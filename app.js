@@ -1,3 +1,4 @@
+// Opens the invitation after the user taps the intro overlay.
 function openInvitation() {
   const intro = document.getElementById('intro');
   const main = document.getElementById('main');
@@ -14,6 +15,7 @@ function openInvitation() {
   setTimeout(observeAll, 400);
 }
 
+// Reveals sections as they enter the viewport.
 function observeAll() {
   const items = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .tl-item');
   const io = new IntersectionObserver((entries) => {
@@ -29,6 +31,7 @@ function observeAll() {
   items.forEach((item) => io.observe(item));
 }
 
+// Updates the thin progress line at the top of the page.
 function updateProgressBar() {
   const progress = document.getElementById('progress');
   const max = document.body.scrollHeight - window.innerHeight;
@@ -42,16 +45,19 @@ function updateProgressBar() {
 let wishIndex = 0;
 const totalWishes = 2;
 
+// Moves the wishes slider backward or forward.
 function slideWish(dir) {
   wishIndex = (wishIndex + dir + totalWishes) % totalWishes;
   updateSlider();
 }
 
+// Jumps directly to the selected wish slide.
 function goWish(i) {
   wishIndex = i;
   updateSlider();
 }
 
+// Applies the current slide position and dot state.
 function updateSlider() {
   const track = document.getElementById('sliderTrack');
   if (track) {
@@ -65,12 +71,14 @@ function updateSlider() {
 
 let attChoice = null;
 
+// Stores the selected RSVP option and updates button styles.
 function selectAtt(btn, val) {
   document.querySelectorAll('.att-btn').forEach((button) => button.classList.remove('selected'));
   btn.classList.add('selected');
   attChoice = val;
 }
 
+// Sends the RSVP form to the Vercel API and shows status to the guest.
 async function submitForm() {
   const formWrap = document.getElementById('formWrap');
   const success = document.getElementById('formSuccess');
@@ -140,6 +148,7 @@ async function submitForm() {
 
 const target = new Date('2026-10-03T12:00:00');
 
+// Updates the wedding countdown every second.
 function updateCountdown() {
   const now = new Date();
   const diff = target - now;
@@ -176,6 +185,7 @@ function updateCountdown() {
   if (seconds) seconds.textContent = pad(s);
 }
 
+// Creates small floating particles visible after the intro is opened.
 function createParticles() {
   const container = document.getElementById('particles');
   if (!container) {
@@ -195,6 +205,7 @@ function createParticles() {
   }
 }
 
+// Connects intro interactions for mouse, touch and keyboard.
 function setupIntroTrigger() {
   const trigger = document.getElementById('introTrigger');
   if (!trigger) {
@@ -216,6 +227,7 @@ function setupIntroTrigger() {
   });
 }
 
+// Exposes UI actions for inline handlers used in the HTML.
 function setupActions() {
   window.slideWish = slideWish;
   window.goWish = goWish;
@@ -223,6 +235,7 @@ function setupActions() {
   window.submitForm = submitForm;
 }
 
+// Bootstraps all front-end interactions once the DOM is ready.
 document.addEventListener('DOMContentLoaded', () => {
   createParticles();
   setupIntroTrigger();
