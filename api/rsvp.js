@@ -27,9 +27,7 @@ async function ensureTable() {
   await getPool().query(`
     CREATE TABLE IF NOT EXISTS rsvps (
       id SERIAL PRIMARY KEY,
-      surname TEXT NOT NULL,
-      name TEXT NOT NULL,
-      patronymic TEXT,
+      guest_name TEXT NOT NULL,
       attendance TEXT NOT NULL,
       comment TEXT,
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -91,15 +89,13 @@ module.exports = async function handler(req, res) {
   try {
     await ensureTable();
 
-    const surname = normalize(req.body?.surname);
-    const name = normalize(req.body?.name);
-    const patronymic = normalize(req.body?.patronymic);
+    const guestName = normalize(req.body?.guestName);
     const attendance = normalize(req.body?.attendance);
     const comment = normalize(req.body?.comment);
 
-    if (!surname || !name || !attendance) {
+    if (!guestName || !attendance) {
       return res.status(400).json({
-        error: 'Будь ласка, заповніть прізвище, імʼя та варіант присутності.'
+        error: 'Будь ласка, заповніть імʼя та прізвище, а також варіант присутності.'
       });
     }
 
@@ -110,11 +106,11 @@ module.exports = async function handler(req, res) {
 
     const insertResult = await getPool().query(
       `
-        INSERT INTO rsvps (surname, name, patronymic, attendance, comment)
-        VALUES ($1, $2, $3, $4, $5)
+        INSERT INTO rsvps (guest_name, attendance, comment)
+        VALUES ($1, $2, $3)
         RETURNING id, created_at
       `,
-      [surname, name, patronymic || null, attendance, comment || null]
+      [guestName, attendance, comment || null]
     );
 
     const record = insertResult.rows[0];
@@ -122,9 +118,7 @@ module.exports = async function handler(req, res) {
     const lines = [
       '<b>Нова відповідь на весільну анкету</b>',
       '',
-      `<b>Прізвище:</b> ${surname}`,
-      `<b>Імʼя:</b> ${name}`,
-      `<b>По батькові:</b> ${patronymic || '—'}`,
+      `<b>Гість:</b> ${guestName}`,
       `<b>Статус:</b> ${attendanceLabel(attendance)}`,
       `<b>Коментар:</b> ${comment || '—'}`,
       '',

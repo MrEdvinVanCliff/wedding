@@ -82,9 +82,7 @@ async function submitForm() {
   const success = document.getElementById('formSuccess');
   const status = document.getElementById('formStatus');
   const submitButton = document.querySelector('.submit-btn');
-  const surname = document.getElementById('fSurname')?.value.trim() || '';
-  const name = document.getElementById('fName')?.value.trim() || '';
-  const patronymic = document.getElementById('fPatronymic')?.value.trim() || '';
+  const guestName = document.getElementById('fGuestName')?.value.trim() || '';
   const comment = document.getElementById('fComment')?.value.trim() || '';
 
   if (!formWrap || !success || !status || !submitButton) {
@@ -94,8 +92,8 @@ async function submitForm() {
   status.textContent = '';
   status.className = 'form-status';
 
-  if (!surname || !name || !attChoice) {
-    status.textContent = 'Заповніть прізвище, імʼя та оберіть варіант присутності.';
+  if (!guestName || !attChoice) {
+    status.textContent = 'Заповніть імʼя та прізвище й оберіть варіант присутності.';
     status.classList.add('error');
     return;
   }
@@ -110,9 +108,7 @@ async function submitForm() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        surname,
-        name,
-        patronymic,
+        guestName,
         attendance: attChoice,
         comment
       })
@@ -183,7 +179,7 @@ function updateCountdown() {
   if (seconds) seconds.textContent = pad(s);
 }
 
-// Creates several particle families: glowing plankton, sparks and tiny galaxy clusters.
+// Creates simple glowing particles that float upward in the background.
 function createParticles() {
   const container = document.getElementById('particles');
   if (!container) {
@@ -192,77 +188,15 @@ function createParticles() {
 
   container.innerHTML = '';
 
-  for (let i = 0; i < 56; i += 1) {
-    const isSpark = Math.random() < 0.58;
-    const isGalaxy = !isSpark && Math.random() < 0.28;
+  for (let i = 0; i < 120; i += 1) {
     const particle = document.createElement('div');
-    const drift = () => `${(Math.random() - 0.5) * 22}px`;
-    const left = `${Math.random() * 100}vw`;
-    const duration = isSpark ? 10 + Math.random() * 12 : 14 + Math.random() * 16;
+    const left = Math.random() * 100;
+    const duration = 12 + Math.random() * 18;
     const delay = Math.random() * 18;
-    const sizeX = isSpark ? 2 + Math.random() * 5 : 10 + Math.random() * 10;
-    const sizeY = isSpark ? 3 + Math.random() * 7 : sizeX * (1.45 + Math.random() * 0.55);
-    const opacity = isSpark ? 0.38 + Math.random() * 0.32 : 0.24 + Math.random() * 0.22;
-    const tilt = `${(Math.random() - 0.5) * 48}deg`;
+    const drift = (Math.random() - 0.5) * 80;
 
-    particle.className = `particle ${isSpark ? 'particle-spark' : 'particle-plankton'}${isGalaxy ? ' particle-galaxy' : ''}`;
-    particle.style.left = left;
-    particle.style.setProperty('--size-x', `${sizeX}px`);
-    particle.style.setProperty('--size-y', `${sizeY}px`);
-    particle.style.setProperty('--duration', `${duration}s`);
-    particle.style.setProperty('--delay', `${delay}s`);
-    particle.style.setProperty('--base-opacity', opacity.toFixed(2));
-    particle.style.setProperty('--x-start', `${(Math.random() - 0.5) * 10}px`);
-    particle.style.setProperty('--arc-a', `${(Math.random() - 0.5) * 34}px`);
-    particle.style.setProperty('--arc-b', `${(Math.random() - 0.5) * 30}px`);
-    particle.style.setProperty('--arc-c', `${(Math.random() - 0.5) * 46}px`);
-    particle.style.setProperty('--arc-d', `${(Math.random() - 0.5) * 38}px`);
-    particle.style.setProperty('--arc-e', `${(Math.random() - 0.5) * 52}px`);
-    particle.style.setProperty('--arc-f', `${(Math.random() - 0.5) * 28}px`);
-    particle.style.setProperty('--drift-a', drift());
-    particle.style.setProperty('--drift-b', drift());
-    particle.style.setProperty('--drift-c', drift());
-    particle.style.setProperty('--drift-duration', `${2.4 + Math.random() * 4.2}s`);
-    particle.style.setProperty('--spin-duration', `${2.8 + Math.random() * 3.6}s`);
-    particle.style.setProperty('--twinkle-duration', `${1.8 + Math.random() * 2.8}s`);
-    particle.style.setProperty('--twinkle-delay', `${Math.random() * 2.2}s`);
-    particle.style.setProperty('--shake-duration', `${1.2 + Math.random() * 2.2}s`);
-    particle.style.setProperty('--shake-delay', `${Math.random() * 1.6}s`);
-    particle.style.setProperty('--trail-tilt', `${(Math.random() - 0.5) * 24}deg`);
-    particle.style.setProperty('--tilt', tilt);
-    if (isGalaxy) {
-      particle.style.setProperty('--orbit-duration', `${2.8 + Math.random() * 2.4}s`);
-    }
-
-    const driftLayer = document.createElement('span');
-    driftLayer.className = 'particle-drift';
-
-    const spinLayer = document.createElement('span');
-    spinLayer.className = 'particle-spin';
-
-    const glow = document.createElement('span');
-    glow.className = 'particle-glow';
-
-    const core = document.createElement('span');
-    core.className = 'particle-core';
-
-    const trail = document.createElement('span');
-    trail.className = 'particle-trail';
-
-    spinLayer.appendChild(glow);
-    spinLayer.appendChild(trail);
-    spinLayer.appendChild(core);
-
-    if (isGalaxy) {
-      for (let n = 1; n <= 5; n += 1) {
-        const satellite = document.createElement('span');
-        satellite.className = `particle-satellite s${n}`;
-        spinLayer.appendChild(satellite);
-      }
-    }
-
-    driftLayer.appendChild(spinLayer);
-    particle.appendChild(driftLayer);
+    particle.className = 'particle';
+    particle.style.cssText = `left:${left}%;animation-duration:${duration}s;animation-delay:${delay}s;--drift:${drift}px`;
     container.appendChild(particle);
   }
 }
