@@ -1,7 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #080808;
+  --bg: rgb(30, 30, 30);
   --surface: #101010;
   --surface2: #161616;
   --border: rgba(255,255,255,0.07);
@@ -432,6 +432,22 @@ body::before {
   letter-spacing: 0.12em;
   color: var(--text);
   min-width: 0;
+}
+
+.tl-event strong,
+.tl-event span {
+  display: block;
+}
+
+.tl-event strong {
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+.tl-event span {
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  color: var(--text-dim);
 }
 
 .dc-text {
