@@ -1155,3 +1155,32 @@ body::before {
     width: min(100%, 980px);
   }
 }
+
+/* Додайте це в кінець вашого файлу */
+
+/* Відступ зверху для всіх блоків, що з'являються */
+.reveal,
+.reveal-left,
+.reveal-right {
+  scroll-margin-top: 30px;  /* базове значення */
+}
+
+/* На телефоні — більший відступ, щоб блок не був одразу прогружений */
+@media (max-width: 768px) {
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    scroll-margin-top: 120px;  /* збільште/зменшіть це значення */
+  }
+}
+
+/* Для першого блоку можна зробити окремий відступ */
+.reveal:first-of-type {
+  scroll-margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .reveal:first-of-type {
+    scroll-margin-top: 20vh;  /* 20% висоти екрану */
+  }
+}
