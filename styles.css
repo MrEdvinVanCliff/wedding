@@ -759,6 +759,15 @@ body::before {
   display: none;
 }
 
+.form-deadline {
+  margin-top: 18px;
+  text-align: center;
+  color: #e18686;
+  font-size: 13px;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+
 .form-status {
   min-height: 20px;
   margin-top: 18px;
