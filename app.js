@@ -24,7 +24,7 @@ function observeAll() {
         io.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.35 });
 
   items.forEach((item) => io.observe(item));
 }
