@@ -923,6 +923,10 @@ body::before {
     padding-right: clamp(16px, 4vw, 24px);
   }
 
+  .hero-section {
+    padding-top: clamp(120px, 18vw, 170px) !important;
+  }
+
   .hero-date,
   .hero-subtitle,
   .block-label,
@@ -1017,6 +1021,10 @@ body::before {
 @media (max-width: 480px) {
   #intro {
     padding: 24px 16px;
+  }
+
+  .hero-section {
+    padding-top: clamp(138px, 24vw, 190px) !important;
   }
 
   .intro-trigger {
