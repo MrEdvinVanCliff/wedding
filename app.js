@@ -41,7 +41,7 @@ function updateProgressBar() {
 }
 
 let wishIndex = 0;
-const totalWishes = 4;
+const totalWishes = 3;
 
 // Moves the wishes slider backward or forward.
 function slideWish(dir) {

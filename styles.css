@@ -941,6 +941,10 @@ body::before {
     gap: 20px;
   }
 
+  .hero-divider {
+    width: 120px;
+  }
+
   .hero-kicker {
     font-size: 8px;
     letter-spacing: 0.08em;
