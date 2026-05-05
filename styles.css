@@ -1024,7 +1024,7 @@ body::before {
   }
 
   .hero-section {
-    padding-top: clamp(138px, 24vw, 190px) !important;
+    padding-top: clamp(250px, 24vw, 190px) !important;
   }
 
   .intro-trigger {
