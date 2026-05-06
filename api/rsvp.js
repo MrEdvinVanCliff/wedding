@@ -39,6 +39,8 @@ function normalize(value) {
   return String(value || '').trim();
 }
 
+
+
 function attendanceLabel(value) {
   if (value === 'yes') return 'Буде присутній';
   if (value === 'maybe') return 'Ще не знає';

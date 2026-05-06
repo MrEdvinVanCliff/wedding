@@ -732,7 +732,7 @@ body::before {
 .att-btn.selected { border-color: var(--gold); background: rgba(201,169,110,0.1); color: var(--gold); }
 
 .submit-btn {
-  margin-top: 28px;
+  margin-top: 1px;
   width: 100%;
   padding: 16px;
   border: 1px solid var(--gold);
@@ -760,7 +760,7 @@ body::before {
 }
 
 .form-deadline {
-  margin-top: 18px;
+  margin-top: 35px;
   text-align: center;
   color: #e18686;
   font-size: 13px;
