@@ -933,7 +933,7 @@ body::before {
   }
 
   .hero-section {
-    padding-top: clamp(120px, 18vw, 170px) !important;
+    padding-top: clamp(2px, 18vw, 170px) !important;
   }
 
   .hero-date,
