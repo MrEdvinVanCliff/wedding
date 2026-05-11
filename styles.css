@@ -449,7 +449,7 @@ body::before {
 .story-section {
   position: relative;
   z-index: 2;
-  margin-top: -76px;
+  margin-top: -1900px;
 }
 
 @keyframes voidTraceFloat {
