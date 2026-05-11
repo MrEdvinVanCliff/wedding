@@ -16,17 +16,34 @@ function openInvitation() {
 // Reveals sections as they enter the viewport.
 function observeAll() {
   const items = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .tl-item');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const delay = Number(entry.target.dataset.delay || 0);
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
+  const observers = new Map();
 
-  items.forEach((item) => io.observe(item));
+  const getObserver = (threshold) => {
+    if (!observers.has(threshold)) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const delay = Number(entry.target.dataset.delay || 0);
+            setTimeout(() => entry.target.classList.add('visible'), delay);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold });
+
+      observers.set(threshold, observer);
+    }
+
+    return observers.get(threshold);
+  };
+
+  items.forEach((item) => {
+    const rawThreshold = Number(item.dataset.threshold);
+    const threshold = Number.isFinite(rawThreshold) && rawThreshold > 1
+      ? Math.min(rawThreshold / 100, 1)
+      : (Number.isFinite(rawThreshold) && rawThreshold >= 0 ? rawThreshold : 0.12);
+
+    getObserver(threshold).observe(item);
+  });
 }
 
 // Updates the thin progress line at the top of the page.
