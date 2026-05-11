@@ -87,7 +87,7 @@ body::before {
 
 .intro-logo-wrap {
   position: relative;
-  width: min(54vw, 220px);
+  width: min(100vw, 290px);
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
@@ -97,7 +97,7 @@ body::before {
 .intro-logo-wrap::before {
   content: '';
   position: absolute;
-  inset: 32%;
+  inset: 30%;
   border-radius: 50%;
   background: #c1b1bb;
   z-index: 1;
@@ -108,7 +108,7 @@ body::before {
   content: '';
   position: absolute;
   inset: -6%;
-  border-radius: 50%;
+  border-radius: 1%;
   z-index: 0;
   background: radial-gradient(
     circle,
@@ -117,8 +117,8 @@ body::before {
     rgba(241,233,225,0.06) 58%,
     transparent 78%
   );
-  filter: blur(12px);
-  opacity: 0.95;
+  filter: blur(50px);
+  opacity: 0.5;
 }
 
 .intro-logo {
