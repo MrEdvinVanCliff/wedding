@@ -87,7 +87,7 @@ body::before {
 
 .intro-logo-wrap {
   position: relative;
-  width: min(100vw, 290px);
+  width: min(290vw, 290px);
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
