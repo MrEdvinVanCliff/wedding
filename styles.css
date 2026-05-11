@@ -99,7 +99,7 @@ body::before {
   position: absolute;
   inset: 32%;
   border-radius: 50%;
-  background: #ddadcb;
+  background: #c1b1bb;
   z-index: 1;
   box-shadow: 0 0 0 1px rgba(241,233,225,0.18), 0 16px 38px rgba(0,0,0,0.22);
 }
