@@ -33,7 +33,7 @@
 
 <main id="main">
   <!-- Hero block: імена, дата та перше враження від запрошення -->
-  <section class="section hero-section" style="padding-top: clamp(80px,12vw,140px);">
+  <section class="section" style="padding-top: clamp(80px,12vw,140px);">
     <div class="card reveal" data-delay="0">
       <div class="card-corner tl"></div><div class="card-corner tr"></div>
       <div class="card-corner bl"></div><div class="card-corner br"></div>
@@ -46,8 +46,7 @@
           <span>Діана</span>
         </h1>
         <div class="hero-meta">
-        <span class="dc-divider"></span>
-
+          <div class="hero-divider"></div>
           <p class="hero-date">03 · 10 · 2026</p>
         </div>
         <p class="hero-subtitle">запрошуємо розділити з нами цей особливий день</p>
@@ -55,8 +54,19 @@
     </div>
   </section>
 
+  <!-- Transition block: анімована пауза між hero і story -->
+  <section class="section transition-section" aria-hidden="true">
+    <div class="transition-void">
+      <span class="void-trace trace-1"></span>
+      <span class="void-trace trace-2"></span>
+      <span class="void-trace trace-3"></span>
+      <span class="void-orb orb-1"></span>
+      <span class="void-orb orb-2"></span>
+    </div>
+  </section>
+
   <!-- Story block: основний текст-запрошення -->
-  <section class="section" style="padding-top:0">
+  <section class="section story-section" style="padding-top:0">
     <div class="card reveal" data-delay="100">
       <div class="card-corner tl"></div><div class="card-corner tr"></div>
       <div class="card-corner bl"></div><div class="card-corner br"></div>
