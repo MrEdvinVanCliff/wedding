@@ -191,6 +191,10 @@ body::before {
   width: min(100%, 900px);
 }
 
+.hero-section {
+  padding-bottom: 0;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -223,6 +227,10 @@ body::before {
   position: relative;
   overflow: hidden;
   margin-bottom: clamp(24px, 4vw, 40px);
+}
+
+.hero-card {
+  margin-bottom: 0;
 }
 
 .card::before {
@@ -1198,6 +1206,10 @@ body::before {
     padding-bottom: 42px;
     padding-left: 14px;
     padding-right: 14px;
+  }
+
+  .hero-section {
+    padding-bottom: 0;
   }
 
   .card {
