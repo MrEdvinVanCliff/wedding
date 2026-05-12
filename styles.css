@@ -399,7 +399,7 @@ body::before {
   display: grid;
   place-items: center;
   min-height: 24px;
-  opacity: 0.88;
+  opacity: 1;
   transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
