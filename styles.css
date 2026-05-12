@@ -389,6 +389,34 @@ body::before {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
 }
 
+.scroll-cue-section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.scroll-cue {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  min-height: 24px;
+  opacity: 0.88;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.scroll-cue.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.scroll-cue-media {
+  display: block;
+  width: clamp(88px, 16vw, 124px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 14px rgba(201, 169, 110, 0.16));
+}
+
 .transition-section {
   padding-top: 0;
   padding-bottom: 0;
@@ -1049,6 +1077,14 @@ body::before {
     letter-spacing: 0.08em;
   }
 
+  .scroll-cue {
+    min-height: 41px;
+  }
+
+  .scroll-cue-media {
+    width: min(118px, 32vw);
+  }
+
   .story-layout {
     grid-template-columns: 1fr;
   }
@@ -1165,6 +1201,14 @@ body::before {
   .card {
     padding: 24px 16px;
     margin-bottom: 18px;
+  }
+
+  .scroll-cue {
+    min-height: 37px;
+  }
+
+  .scroll-cue-media {
+    width: min(108px, 34vw);
   }
 
   .transition-void {

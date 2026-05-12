@@ -57,6 +57,24 @@ function updateProgressBar() {
   }
 }
 
+// Hides the scroll cue once the next content block is meaningfully visible.
+function setupScrollCue() {
+  const cue = document.getElementById('scrollCue');
+  const storyCard = document.querySelector('.story-section .card');
+
+  if (!cue || !storyCard) {
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      cue.classList.toggle('hidden', entry.isIntersecting);
+    });
+  }, { threshold: 0.18 });
+
+  observer.observe(storyCard);
+}
+
 let wishIndex = 0;
 const totalWishes = 3;
 
@@ -253,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
   createParticles();
   document.getElementById('particles')?.classList.add('visible');
   setupIntroTrigger();
+  setupScrollCue();
   setupActions();
   updateSlider();
   updateCountdown();
